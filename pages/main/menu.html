@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../shared/models/styles/menu.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <title>Menu</title>
+</head>
+
+<body>
+    <aside class="panel-navegacion">
+        <img src="../../assets/icons/logo_patio.png" alt="logo" class="logo-panel">
+        <nav class="lista-iconos">
+            <a href="menu.html" class="icono-nav">
+                <img src="../../assets/icons/menu.png" alt="menu" class="img-icono">
+                <span class="texto-icono">Menu</span>
+            </a>
+            <a href="../orders/ordenes.html" class="icono-nav">
+                <img src="../../assets/icons/ordenes.png" alt="ordenes" class="img-icono">
+                <span class="texto-icono">Ordenes</span>
+            </a>
+            <a href="../admin/administracion.html" class="icono-nav">
+                <img src="../../assets/icons/ajustes.png" alt="ajustes" class="img-icono">
+                <span class="texto-icono">Administración</span>
+            </a>
+        </nav>
+        <nav class="lista-iconos">
+            <a href="#" class="icono-nav" id="btn-salir">
+                <img src="../../assets/icons/salir.png" alt="salir" class="img-icono">
+                <span class="texto-icono">Salir</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="area-principal">
+        <header class="cabecera-menu">
+            <h1 class="titulo-restaurante">El Patio de mi Abuela</h1>
+            <div class="buscador-header">
+                <input type="text" id="input-buscador-menu" placeholder="🔍 Buscar..." class="campo-buscador">
+                <select id="select-tipo-busqueda" class="select-buscador">
+                    <option value="productos">Productos</option>
+                    <option value="categorias">Categorías</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="layout-menu">
+
+            <!-- MÓDULO DE CATEGORÍAS -->
+            <div class="contenedor-categorias">
+                <h3 class="titulo-seccion">Categorías</h3>
+                <div class="lista-categorias">
+                </div>
+            </div>
+
+            <!-- FILA PRINCIPAL: PRODUCTOS + ORDEN -->
+            <div class="fila-principal">
+
+                <!-- MÓDULO DE PRODUCTOS -->
+                <div class="contenedor-productos">
+                    <h3 class="titulo-seccion">Productos</h3>
+                    <div class="grid-productos">
+                        <p class="mensaje-vacio">No hay productos en esta categoría.</p>
+                    </div>
+                </div>
+
+                <!-- MÓDULO DE ORDEN -->
+                <div class="contenedor-orden">
+
+                    <!-- ← CAMBIO: campanita con panel desplegable -->
+                    <div class="titulo-con-campana">
+                        <h3 class="titulo-seccion">Orden Actual</h3>
+                        <div class="campana-contenedor" id="campana-contenedor">
+                            <img src="../../assets/icons/notificacion.png" alt="notificaciones" class="campana-icono" id="campana-icono">
+                            <span class="campana-badge" id="campana-badge" style="display:none;">0</span>
+                            <!-- Panel desplegable -->
+                            <div class="panel-notificaciones" id="panel-notificaciones" style="display:none;">
+                                <div class="panel-noti-header">
+                                    <span>🔔 Órdenes Listas</span>
+                                </div>
+                                <div class="panel-noti-lista" id="panel-noti-lista">
+                                    <!-- JS inyectará las órdenes aquí -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de Mesa -->
+                    <div class="selector-mesa-container">
+                        <label>Mesa:</label>
+                        <select class="select-mesa" id="select-mesa">
+                            <option value="" disabled selected>Cargando mesas...</option>
+                        </select>
+                    </div>
+
+                    <!-- Lista de productos agregados -->
+                    <div class="lista-items-orden">
+                        <p class="mensaje-vacio">Selecciona productos para agregar...</p>
+                    </div>
+
+                    <!-- Botón de Acción -->
+                    <button class="btn-generar-orden">
+                        Generar Orden
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+<script src="menu.js" defer></script>
+
+</html>

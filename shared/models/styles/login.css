@@ -1,0 +1,242 @@
+/* Estilos generales para toda la página */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+
+    box-sizing: inherit;
+
+}
+
+/*fin de los estilos generales para toda la página*/
+
+
+/*fuente que usara el sistema segun el dispositivo que usen los usuarios*/
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/*fin de la fuente que usara el sistema segun el dispositivo que usen los usuarios*/
+
+
+/* Estilos para la página de login */
+/*contene el fondo y la posición del formulario de login*/
+.contenedor-login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../assets/images/fondo.jpg');
+    /* Establece la imagen de fondo para la página de login */
+}
+
+/*fin del estilo del fondo*/
+
+/* Estilos para el formulario de login */
+.caja-formulario {
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.titulo-login {
+    margin-bottom: 0;
+
+}
+
+.subtitulo-login {
+    margin-top: 0;
+    margin-bottom: 14px
+}
+
+/*estilos para hacer legible el placholder de los campos de datos*/
+.campo-usuario::placeholder,
+.campo-password::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+/*fin de los estilos para hacer legible el placholder de los campos de datos*/
+
+/*estilos para la imagen del logo en el formulario de login*/
+.logo-login {
+    display: block;
+    margin: 0 auto 2px auto;
+    /* Centra la imagen  */
+    max-width: 110px;
+    width: 100%;
+}
+
+@keyframes rebote {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+
+    50% {
+        transform: scale(1.09);
+    }
+}
+
+/*efecto de rebote al hacer hover en la imagen del logo*/
+
+.logo-login:hover {
+    animation: rebote 0.4s ease;
+    cursor: pointer;
+}
+
+/* Agrega la animación de rebote al hacer hover en la imagen del logo */
+/*fin de los estilos para la imagen del logo en el formulario de login*/
+/*fin del contendor del formulario de login*/
+
+
+
+/*estilos para los campos de insersion de datos*/
+.campo-usuario,
+.campo-password {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.0);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    /* Elimina el borde de enfoque predeterminado */
+}
+
+
+
+/*estilos para los campos de insersion de datos al hacer focus*/
+.campo-usuario:focus,
+.campo-password:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/*fin de los estilos para los campos de insersion de datos al hacer focus*/
+
+/*fin de los estilos para los campos de insersion de datos*/
+
+
+/*estilos para el boton de iniciar sesion*/
+.btn-entrar {
+    width: 100%;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    /* Cambia el peso de la fuente para hacerla más llamativa */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Agrega una transición suave para el efecto hover */
+}
+
+.btn-entrar:hover {
+    background: rgba(255, 255, 255, 0.35);
+    /* Cambia el fondo al hacer hover */
+    transform: translateY(-2px);
+    /* Agrega un efecto de elevación al hacer hover */
+}
+
+
+/*estilos para el mensaje de error al iniciar sesion*/
+.mensaje-error {
+    display: none;
+    /* Oculta el mensaje de error por defecto */
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 14px;
+    background: rgba(255, 80, 80, 0.12);
+    /* Fondo rojo claro para el mensaje de error */
+    border: 1px solid rgba(255, 100, 100, 0.25);
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #ffeaea;
+    /* Color del texto para el mensaje de error */
+}
+
+/*fin de los estilos para el mensaje de error al iniciar sesion*/
+
+/*metodos responsive para el formulario de login*/
+/*ajustes para pantallas pequeñas*/
+@media (max-width: 480px) {
+    .caja-formulario {
+        padding: 24px 18px;
+        width: 94%;
+        max-width: 360px;
+    }
+
+    .logo-login {
+        max-width: 85px;
+        margin-bottom: 4px;
+    }
+
+    .titulo-login {
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+
+    .subtitulo-login {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .campo-usuario,
+    .campo-password,
+    .btn-entrar {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+}
+
+/*fin de los ajustes para pantallas pequeñas*/
+
+/*tablets*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    .caja-formulario {
+        max-width: 380;
+        padding: 32px 28px;
+    }
+
+    .logo-login {
+        max-width: 95px;
+    }
+}
+
+/*fin de los ajustes para tablets*/
+
+/*escritorios*/
+@media (min-width: 1025px) {
+    .caja-formulario {
+        max-width: 420;
+    }
+}
+
+/*fin de los ajustes para escritorios*/

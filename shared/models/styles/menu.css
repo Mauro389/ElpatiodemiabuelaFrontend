@@ -1,0 +1,766 @@
+/* =========================================
+   BASE
+   ========================================= */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    /* ← CRÍTICO: que padding no rompa tamaños */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../../../assets/images/fondo.jpg') center/cover no-repeat;
+    height: 100dvh;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    /* ← evita scroll en el body */
+}
+
+/* =========================================
+   PANEL LATERAL
+   ========================================= */
+.panel-navegacion {
+    width: 80px;
+    min-width: 80px;
+    /* ← no se encoge */
+    z-index: 100;
+    background: rgba(20, 20, 20, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    height: 100%;
+}
+
+.lista-iconos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.icono-nav {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.logo-panel {
+    display: block;
+    max-width: 62px;
+    width: 100%;
+    margin: 0 auto 30px auto;
+}
+
+.img-icono {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.texto-icono {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    margin: 0;
+}
+
+.icono-nav:hover {
+    background: rgba(255, 255, 255, 0.12);
+    animation: rebote-icono 0.35s ease;
+}
+
+.logo-panel:hover {
+    animation: rebote-icono 0.4s ease;
+    cursor: pointer;
+}
+
+@keyframes rebote-icono {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+/* =========================================
+   ÁREA PRINCIPAL
+   ========================================= */
+.area-principal {
+    flex: 1;
+    /* ocupa todo el ancho restante */
+    min-width: 0;
+    /* ← evita desbordamiento flex */
+    height: 100dvh;
+    /* ← altura completa */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
+    /* ← el scroll lo maneja cada módulo interno */
+}
+
+/* =========================================
+   CABECERA
+   ========================================= */
+.cabecera-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.30);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.titulo-restaurante {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.buscador-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.campo-buscador {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 8px 18px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    width: 220px;
+    transition: border-color 0.2s;
+}
+
+.campo-buscador::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.campo-buscador:focus {
+    border-color: #ff9b6b;
+}
+
+.select-buscador {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 8px 14px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-buscador option {
+    background: #222;
+    color: #fff;
+}
+
+/* =========================================
+   LAYOUT MENU  (el contenedor que faltaba anclar)
+   ========================================= */
+.layout-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    /* ← ocupa TODO el alto restante tras la cabecera */
+    min-height: 0;
+    /* ← CRÍTICO para que flex + overflow funcionen */
+    overflow: hidden;
+}
+
+/* =========================================
+   MÓDULO CATEGORÍAS
+   ========================================= */
+.contenedor-categorias {
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 15px;
+    flex-shrink: 0;
+}
+
+.titulo-seccion {
+    color: #fff;
+    margin: 0 0 10px 0;
+}
+
+.lista-categorias {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+}
+
+.lista-categorias::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================================
+   FILA PRINCIPAL  (productos + orden)
+   ========================================= */
+.fila-principal {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    /* ← ocupa el resto del alto */
+    min-height: 0;
+    /* ← CRÍTICO */
+    overflow: hidden;
+}
+
+/* =========================================
+   MÓDULO PRODUCTOS
+   ========================================= */
+.contenedor-productos {
+    flex: 1.5;
+    min-width: 0;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    flex: 1;
+    /* ← ocupa el espacio sobrante del contenedor */
+    min-height: 0;
+    /* ← permite scroll interno */
+    overflow-y: auto;
+    padding: 5px;
+    margin-top: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* =========================================
+   MÓDULO ORDEN
+   ========================================= */
+.contenedor-orden {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.selector-mesa-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.selector-mesa-container label {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.select-mesa {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.select-mesa option {
+    background: #222;
+    color: #fff;
+}
+
+.lista-items-orden {
+    flex: 1;
+    /* ← ocupa el espacio sobrante */
+    min-height: 0;
+    /* ← permite scroll interno */
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    color: #fff;
+}
+
+.btn-generar-orden {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(255, 100, 50, 0.3);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    /* ← siempre visible, no se encoge */
+}
+
+.btn-generar-orden:hover {
+    transform: scale(1.02);
+}
+
+/* =========================================
+   CHIPS Y CARDS
+   ========================================= */
+.btn-categoria,
+.chip-categoria {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    padding: 10px 24px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-categoria:hover,
+.chip-categoria:hover {
+    background: rgba(255, 100, 50, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-categoria.activa,
+.chip-categoria.activo {
+    background: rgba(255, 100, 50, 0.9);
+    box-shadow: 0 4px 12px rgba(255, 100, 50, 0.3);
+    font-weight: bold;
+}
+
+.card-producto,
+.tarjeta-producto {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 80px;
+    /* antes probablemente mayor */
+    max-height: 100px;
+    /* ← esto es lo que lo controla */
+    color: #fff;
+}
+
+.card-producto:hover,
+.tarjeta-producto:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 100, 50, 0.5);
+}
+
+.card-nombre,
+.nombre-producto {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-precio,
+.precio-producto {
+    font-size: 15px;
+    color: #ff9b6b;
+    font-weight: bold;
+    background: rgba(255, 155, 107, 0.15);
+    padding: 4px 10px;
+    border-radius: 15px;
+}
+
+/* =========================================
+   ITEMS DE ORDEN
+   ========================================= */
+.item-orden {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 13px;
+    color: #fff;
+}
+
+.nombre-item-orden {
+    flex: 1;
+    font-weight: 500;
+}
+
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-cantidad {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-cantidad:hover {
+    background: rgba(255, 100, 50, 0.5);
+}
+
+.precio-item-orden {
+    color: #ff9b6b;
+    font-weight: bold;
+    min-width: 55px;
+    text-align: right;
+}
+
+.btn-quitar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.btn-quitar:hover {
+    opacity: 1;
+}
+
+.total-orden {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: right;
+    color: #ff9b6b;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.mensaje-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: 13px;
+}
+
+.mensaje-vacio::before {
+    content: "🍽️";
+    font-size: 36px;
+    opacity: 0.6;
+    display: block;
+}
+
+.mensaje-vacio::after {
+    content: "Selecciona una categoría para ver los productos";
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    display: block;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 1000px) {
+
+    /* Ventana pequeña o tablet: apila productos y orden */
+    .fila-principal {
+        flex-direction: column;
+        overflow-y: auto;
+        /* scroll en toda la fila */
+        overflow-x: hidden;
+    }
+
+    .contenedor-productos,
+    .contenedor-orden {
+        flex: none;
+        min-height: 320px;
+        width: 100%;
+    }
+
+    .layout-menu {
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .cabecera-menu {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .campo-buscador {
+        width: 100%;
+    }
+
+    .grid-productos {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .panel-navegacion {
+        width: 64px;
+        min-width: 64px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.lista-items-orden::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lista-items-orden::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.lista-items-orden::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+
+
+
+
+/* =========================================
+   CAMPANITA DE NOTIFICACIONES
+   ========================================= */
+.titulo-con-campana {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.campana-contenedor {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.campana-contenedor:hover {
+    background: rgba(255, 155, 107, 0.3);
+}
+
+.campana-icono {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.campana-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulso 1s infinite;
+}
+
+@keyframes pulso {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.2); }
+}
+
+
+
+
+
+
+
+/* Panel desplegable notificaciones */
+.panel-notificaciones {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 240px;
+    background: rgba(20, 20, 20, 0.454);  /* ← menos opaco */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    overflow: hidden;
+}
+
+.panel-noti-header {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ff9b6b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.panel-noti-lista {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.noti-item {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.noti-item:hover {
+    background: rgba(255, 100, 50, 0.25);
+}
+
+.noti-item:last-child {
+    border-bottom: none;
+}
+
+.noti-item-titulo {
+    font-weight: 600;
+    color: #ff9b6b;
+}
+
+.noti-item-detalle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+}
+
+.noti-vacio {
+    padding: 14px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+}
+
+
+
+
+
+
+.card-agotado {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: rgba(231, 76, 60, 0.4);
+}
+
+.card-stock-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.agotado {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.stock-bajo {
+    background: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+}

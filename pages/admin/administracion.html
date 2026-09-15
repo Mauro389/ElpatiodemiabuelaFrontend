@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../shared/models/styles/administracion.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <title>Administración - Patio Campestre</title>
+</head>
+
+<body>
+
+    <!-- PANEL LATERAL -->
+    <aside class="panel-navegacion">
+        <img src="../../assets/icons/logo_patio.png" alt="logo" class="logo-panel">
+        <nav class="lista-iconos">
+            <a href="../main/menu.html" class="icono-nav">
+                <img src="../../assets/icons/menu.png" alt="menu" class="img-icono">
+                <span class="texto-icono">Menú</span>
+            </a>
+            <a href="../orders/ordenes.html" class="icono-nav">
+                <img src="../../assets/icons/ordenes.png" alt="ordenes" class="img-icono">
+                <span class="texto-icono">Órdenes</span>
+            </a>
+            <a href="../admin/administracion.html" class="icono-nav activo">
+                <img src="../../assets/icons/ajustes.png" alt="ajustes" class="img-icono">
+                <span class="texto-icono">Administración</span>
+            </a>
+
+        </nav>
+
+        <nav class="lista-iconos">
+            <a href="#" class="icono-nav" id="btn-salir">
+                <img src="../../assets/icons/salir.png" alt="salir" class="img-icono">
+                <span class="texto-icono">Salir</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-admin">
+
+        <!-- FILA SUPERIOR: LOS 3 CRUDs -->
+        <div class="fila-crud">
+
+            <!-- COLUMNA 1: CATEGORÍAS -->
+            <section class="modulo-crud">
+                <div class="modulo-header">
+                    <div class="buscador-modulo">
+                        <input type="text" class="campo" id="buscador-categorias" placeholder="🔍 Buscar categoría...">
+                    </div>
+                    <h2>Categorías</h2>
+                </div>
+                <div class="grupo-entrada">
+                    <input type="text" class="campo" id="input-nombre-categoria"
+                        placeholder="Nombre de la categoría...">
+                    <button class="btn-agregar" id="btn-agregar-categoria">Agregar</button>
+                </div>
+                <ul class="lista-crud" id="lista-categorias">
+                    <!-- JS inyectará las categorías aquí -->
+
+                </ul>
+            </section>
+
+            <!-- COLUMNA 2: PRODUCTOS -->
+            <section class="modulo-crud">
+                <div class="modulo-header">
+                    <div class="buscador-modulo">
+                        <input type="text" class="campo" id="buscador-productos" placeholder="🔍 Buscar producto...">
+                    </div>
+                    <h2>Productos</h2>
+                </div>
+                <div class="grupo-entrada">
+                    <input type="text" class="campo" id="input-nombre-producto" placeholder="Nombre del producto...">
+                    <input type="number" class="campo" id="input-precio-producto" placeholder="Precio ($)...">
+                    <select class="campo" id="select-categorias-producto">
+                        <option value="" disabled selected>Asignar Categoría</option>
+                    </select>
+                    <div class="toggle-inventario">
+                        <label>¿Inventariable?</label>
+                        <select class="campo campo-small" id="select-inventario">
+                            <option value="no">No</option>
+                            <option value="si">Sí</option>
+                        </select>
+                    </div>
+                    <!-- Campos stock ocultos, aparecen solo si es inventariable -->
+                    <div id="campos-stock" style="display:none; flex-direction:column; gap:10px;">
+                        <input type="number" class="campo" id="input-stock-actual" placeholder="Stock actual...">
+                        <input type="number" class="campo" id="input-stock-minimo" placeholder="Stock mínimo...">
+                    </div>
+                    <button class="btn-agregar" id="btn-agregar-producto">Agregar</button>
+                </div>
+                <ul class="lista-crud" id="lista-productos">
+                    <!-- JS inyectará los productos aquí -->
+                </ul>
+            </section>
+
+            <!-- COLUMNA 3: USUARIOS -->
+            <section class="modulo-crud">
+                <div class="modulo-header">
+                    <h2>Usuarios</h2>
+                </div>
+                <div class="grupo-entrada">
+                    <input type="text" class="campo" id="input-nombre-completo" placeholder="Nombre completo...">
+                    <input type="text" class="campo" id="input-username-usuario"
+                        placeholder="Nombre de usuario (login)...">
+                    <input type="password" class="campo" id="input-password-usuario" placeholder="Contraseña...">
+                    <select class="campo" id="select-rol-usuario">
+                        <option value="" disabled selected>Seleccionar Rol</option>
+                    </select>
+                    <button class="btn-agregar" id="btn-agregar-usuario">Agregar</button>
+                </div>
+                <ul class="lista-crud" id="lista-usuarios">
+                    <!-- JS inyectará los usuarios aquí -->
+                </ul>
+            </section>
+
+
+            <!-- NUEVA COLUMNA 4: MESAS -->
+            <section class="modulo-crud">
+                <div class="modulo-header">
+                    <h2>Mesas</h2>
+                </div>
+                <div class="grupo-entrada">
+                    <input type="text" class="campo" id="input-numero-mesa" placeholder="Nombre (Ej: Mesa 1)...">
+                    <button class="btn-agregar" id="btn-agregar-mesa">Agregar</button>
+                </div>
+                <ul class="lista-crud" id="lista-mesas">
+                    <!-- JS inyectará las mesas aquí -->
+                </ul>
+            </section>
+
+
+        </div>
+        <!-- PANEL INFERIOR: PAPELERA / RECUPERACIÓN -->
+        <section class="panel-recuperacion">
+            <div class="recuperacion-header">
+                <h2>♻️ Elementos Eliminados</h2>
+                <div class="filtro-tipo">
+                    <label>Mostrar:</label>
+                    <select class="campo" id="select-tipo-recuperar">
+                        <option value="" disabled selected>Seleccionar tipo</option>
+
+                        <!-- JS/API llenará las opciones disponibles dinámicamente -->
+                    </select>
+                </div>
+            </div>
+            <ul class="lista-recuperacion" id="lista-eliminados">
+                <!-- Ejemplo temporal para visualizar -->
+
+                <!-- JS inyectará los eliminados reales aquí -->
+            </ul>
+        </section>
+
+        <!-- DASHBOARD KPIs -->
+        <div class="panel-dashboard">
+            <div class="dashboard-header">
+                <h2>📊 Dashboard </h2>
+            </div>
+            <div class="grid-graficas">
+
+                <!-- GRÁFICA 1: Barras - Ganancias por mes -->
+                <div class="grafica-card">
+                    <h3 class="grafica-titulo">💰 Ganancias por Mes</h3>
+                    <canvas id="grafica-ganancias"></canvas>
+                    <p class="grafica-kpi" id="kpi-mes-ganancias"></p>
+                </div>
+
+                <!-- GRÁFICA 2: Línea - Facturas por mes -->
+                <div class="grafica-card">
+                    <h3 class="grafica-titulo">🧾 Facturas por Mes</h3>
+                    <canvas id="grafica-facturas"></canvas>
+                    <p class="grafica-kpi" id="kpi-mes-facturas"></p>
+                </div>
+
+                <!-- GRÁFICA 3: Pastel - Métodos de pago -->
+                <div class="grafica-card">
+                    <h3 class="grafica-titulo">💳 Métodos de Pago</h3>
+                    <canvas id="grafica-metodos"></canvas>
+                    <p class="grafica-kpi" id="kpi-metodo-pago"></p>
+                </div>
+
+            </div>
+        </div>
+        <!-- NUEVO PANEL INFERIOR: AUDITORÍA DEL SISTEMA -->
+        <div class="panel-auditoria">
+            <div class="auditoria-header">
+                <h2>Historial de Auditoría</h2>
+            </div>
+            <div class="tabla-auditoria-contenedor">
+                <table class="tabla-auditoria">
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Usuario</th>
+                            <th>Acción</th>
+                            <th>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-auditoria-body">
+                        <!-- Aquí el JS insertará las filas automáticamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    </div>
+    <script src="administracion.js" defer></script>
+    <script src="categorias.js" defer></script>
+    <script src="productos.js" defer></script>
+    <script src="usuarios.js" defer></script>
+    <script src="mesas.js" defer></script>
+    <script src="papelera.js" defer></script>
+    <script src="dashboard.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="auditoria.js" defer></script>
+
+</body>
+
+</html>

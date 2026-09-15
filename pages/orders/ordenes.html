@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../shared/models/styles/ordenes.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/favicon.ico">
+    <title>Órdenes - Patio Campestre</title>
+</head>
+
+<body>
+
+    <!-- PANEL LATERAL DE NAVEGACIÓN -->
+    <aside class="panel-navegacion" id="panel-nav-ordenes">
+        <img src="../../assets/icons/logo_patio.png" alt="Logo" class="logo-panel">
+        <nav class="lista-iconos">
+            <a href="../main/menu.html" class="icono-nav">
+                <img src="../../assets/icons/menu.png" alt="Menú" class="img-icono">
+                <span class="texto-icono">Menú</span>
+            </a>
+            <a href="../orders/ordenes.html" class="icono-nav activo">
+                <img src="../../assets/icons/ordenes.png" alt="Órdenes" class="img-icono">
+                <span class="texto-icono">Órdenes</span>
+            </a>
+            <a href="../admin/administracion.html" class="icono-nav">
+                <img src="../../assets/icons/ajustes.png" alt="Ajustes" class="img-icono">
+                <span class="texto-icono">Administración</span>
+            </a>
+
+        </nav>
+        <nav class="lista-iconos">
+            <a href="#" class="icono-nav" id="btn-salir-ordenes">
+                <img src="../../assets/icons/salir.png" alt="Salir" class="img-icono">
+                <span class="texto-icono">Salir</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- TABLERO KANBAN PRINCIPAL -->
+    <main class="tablero-ordenes">
+
+        <!-- COLUMNA 1: RECIBIDA -->
+        <section class="columna columna-recibida" data-estado="recibida">
+            <header class="encabezado-columna">
+                <h2 class="titulo-columna">Recibida</h2>
+                <span class="circulo-indicador"></span>
+            </header>
+            <div class="contenido-columna" id="lista-recibida">
+                <!-- JS inyectará aquí las tarjetas con estado "recibida" -->
+                <!-- Ejemplo de tarjeta estática (descomentar para pruebas) -->
+
+
+        </section>
+
+        <!-- COLUMNA 2: EN PREPARACIÓN -->
+        <section class="columna columna-preparacion" data-estado="preparacion">
+            <header class="encabezado-columna">
+                <h2 class="titulo-columna">En Preparación</h2>
+                <span class="circulo-indicador"></span>
+            </header>
+            <div class="contenido-columna" id="lista-preparacion">
+                <!-- JS inyectará aquí las tarjetas con estado "preparacion" -->
+            </div>
+        </section>
+
+        <!-- COLUMNA 3: ENTREGADA -->
+        <section class="columna columna-entregada" data-estado="entregada">
+            <header class="encabezado-columna">
+                <h2 class="titulo-columna">Entregada</h2>
+                <span class="circulo-indicador"></span>
+            </header>
+            <div class="contenido-columna" id="lista-entregada">
+                <!-- JS inyectará aquí las tarjetas con estado "entregada" -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TEMPLATE OCULTO: Estructura base para clonar dinámicamente -->
+    <template id="template-tarjeta-orden">
+        <div class="tarjeta-orden">
+            <div class="tarjeta-header">
+                <span class="num-orden">#000</span>
+                <span class="mesa-orden">Mesa 00</span>
+                <span class="hora-orden">00:00</span>
+            </div>
+            <div class="tarjeta-body">
+                <ul class="lista-items-orden">
+                    <!-- JS inyectará los <li> con los productos -->
+                </ul>
+            </div>
+            <div class="tarjeta-footer">
+                <!-- Botones base (JS alternará la clase .desactivado según el rol) -->
+                <button class="btn-accion btn-cocina" data-accion="preparar">🔥 Preparar</button>
+                <button class="btn-accion btn-cocina" data-accion="entregar">✅ Entregar</button>
+                <button class="btn-accion btn-caja" data-accion="facturar">💳 Facturar</button>
+            </div>
+        </div>
+    </template>
+
+
+
+    <div id="modal-facturacion" class="modal-oculto">
+    <div class="modal-contenido">
+        <h3>Detalle de Facturación</h3>
+        <ul id="lista-detalle-modal"></ul>
+        <div class="input-grupo">
+            <label>Método de pago:</label>
+            <select id="select-metodo-pago">
+                <option value="Efectivo">💵 Efectivo</option>
+                <option value="Tarjeta">💳 Tarjeta</option>
+            </select>
+        </div>
+        <div class="input-grupo">
+            <label>Propina ($):</label>
+            <input type="number" id="input-propina" value="0.00" step="0.01">
+        </div>
+        <div class="botones-modal">
+            <button id="btn-cancelar-factura">Cancelar</button>
+            <button id="btn-pre-factura">🖨️ Pre-factura</button>
+            <button id="btn-confirmar-factura">Generar y Descargar PDF</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="module" src="ordenes.js" defer></script>
+</body>
+
+</html>
